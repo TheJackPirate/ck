@@ -60,6 +60,7 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
+	@Transactional
 	public Result<City> insertCity(City city) {
 		cityDao.insertCity(city);
 		return new Result<City>(ResultStatus.SUCCESS.status, "", city);
@@ -73,6 +74,7 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
+	@Transactional
 	public Result<City> deleteCityByCityId(int cityId) {
 		cityDao.deleteCityByCityId(cityId);
 		return new Result<City>(ResultStatus.SUCCESS.status, "");
