@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ck.springbootdemo.modules.common.vo.Result;
 import com.ck.springbootdemo.modules.common.vo.SearchVo;
 import com.ck.springbootdemo.modules.test.entity.City;
 import com.ck.springbootdemo.modules.test.service.CityService;
@@ -60,12 +61,22 @@ public class CityController {
 	}
 	
 	/**
-	 * 127.0.0.1/api/cities
+	 * 127.0.0.1/api/cities----post
 	 * @param searchVo
 	 * @return
 	 */
 	@PostMapping(value = "/cities", consumes = "application/json")
 	public PageInfo<City> getCitiesBySearchVo(@RequestBody SearchVo searchVo) {
 		return cityService.getCitiesBySearchVo(searchVo);
+	}
+	
+	/**
+	 * 127.0.0.1/api/city----post
+	 * @param city
+	 * @return
+	 */
+	@PostMapping(value = "/city", consumes = "application/json")
+	public Result<City> insertCity(@RequestBody City city) {
+		return cityService.insertCity(city);
 	}
 }

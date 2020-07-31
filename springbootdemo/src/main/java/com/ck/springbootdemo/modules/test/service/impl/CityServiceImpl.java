@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ck.springbootdemo.modules.common.vo.Result;
+import com.ck.springbootdemo.modules.common.vo.Result.ResultStatus;
 import com.ck.springbootdemo.modules.common.vo.SearchVo;
 import com.ck.springbootdemo.modules.test.dao.CityDao;
 import com.ck.springbootdemo.modules.test.entity.City;
@@ -54,6 +56,12 @@ public class CityServiceImpl implements CityService{
 		return new PageInfo<City>(
 				Optional.ofNullable(cityDao.getCitiesBySearchVo(searchVo))
 				.orElse(Collections.emptyList()));
+	}
+
+	@Override
+	public Result<City> insertCity(City city) {
+		cityDao.insertCity(city);
+		return new Result<City>(ResultStatus.SUCCESS.status, "", city);
 	}
 
 }

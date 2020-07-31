@@ -2,7 +2,9 @@ package com.ck.springbootdemo.modules.test.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import com.ck.springbootdemo.modules.common.vo.SearchVo;
@@ -38,5 +40,10 @@ public interface CityDao {
 	        + "</choose>"
 	        + "</script>")
 	List<City> getCitiesBySearchVo(SearchVo searchVo);
+	
+	@Insert("insert into m_city (city_name, local_city_name, country_id, date_created) "
+			+ "values(#{cityName}, #{localCityName}, #{countryId}, #{dateCreated})")
+	@Options(useGeneratedKeys = true, keyColumn = "city_id", keyProperty = "cityId")
+	void insertCity(City city);
 
 }
