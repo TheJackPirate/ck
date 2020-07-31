@@ -30,6 +30,11 @@ public class TestController {
 	@Autowired
 	private ApplicationTest applicationTest;
 	
+	@RequestMapping("/index")
+	public String testIndex(){
+		return "index";
+	}
+	
 	@RequestMapping("/log")
 	@ResponseBody
 	public String logTest() {
