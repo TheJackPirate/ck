@@ -59,6 +59,11 @@ public class CityController {
 		return cityService.getCitiesByPage(currentPage, pageSize, countryId);
 	}
 	
+	/**
+	 * 127.0.0.1/api/cities
+	 * @param searchVo
+	 * @return
+	 */
 	@PostMapping(value = "/cities", consumes = "application/json")
 	public PageInfo<City> getCitiesBySearchVo(@RequestBody SearchVo searchVo) {
 		return cityService.getCitiesBySearchVo(searchVo);

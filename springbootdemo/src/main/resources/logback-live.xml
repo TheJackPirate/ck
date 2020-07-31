@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- 
     scan：程序运行时配置文件被修改，是否重新加载。true，重新加载；false,不重新加载；默认为true;
     scanPeriod：监测配置文件被修改的时间间隔，scan属性必须设置为true才可生效；默认为1分钟，默认单位,包括：milliseconds、seconds、minutes和hours;
