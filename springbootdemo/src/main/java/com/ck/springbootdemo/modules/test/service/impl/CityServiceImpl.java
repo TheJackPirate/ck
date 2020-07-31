@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ck.springbootdemo.modules.common.vo.Result;
 import com.ck.springbootdemo.modules.common.vo.Result.ResultStatus;
@@ -62,6 +63,19 @@ public class CityServiceImpl implements CityService{
 	public Result<City> insertCity(City city) {
 		cityDao.insertCity(city);
 		return new Result<City>(ResultStatus.SUCCESS.status, "", city);
+	}
+
+	@Override
+	@Transactional
+	public Result<City> updateCity(City city) {
+		cityDao.updateCity(city);
+		return new Result<City>(ResultStatus.SUCCESS.status, "", city);
+	}
+
+	@Override
+	public Result<City> deleteCityByCityId(int cityId) {
+		cityDao.deleteCityByCityId(cityId);
+		return new Result<City>(ResultStatus.SUCCESS.status, "");
 	}
 
 }

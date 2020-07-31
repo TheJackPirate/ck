@@ -3,8 +3,11 @@ package com.ck.springbootdemo.modules.test.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,5 +81,25 @@ public class CityController {
 	@PostMapping(value = "/city", consumes = "application/json")
 	public Result<City> insertCity(@RequestBody City city) {
 		return cityService.insertCity(city);
+	}
+	
+	/**
+	 * 127.0.0.1/api/city----put
+	 * @param city
+	 * @return
+	 */
+	@PutMapping(value = "/city", consumes = "application/x-www-form-urlencoded")
+	public Result<City> updateCity(@ModelAttribute City city) {
+		return cityService.updateCity(city);
+	}
+	
+	/**
+	 * 127.0.0.1/api/city/2258----delete
+	 * @param cityId
+	 * @return
+	 */
+	@DeleteMapping("/city/{cityId}")
+	public Result<City> deleteCityByCityId(@PathVariable int cityId) {
+		return cityService.deleteCityByCityId(cityId);
 	}
 }

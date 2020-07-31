@@ -19,4 +19,8 @@ public interface CityService {
 	PageInfo<City> getCitiesBySearchVo(SearchVo searchVo);
 	
 	Result<City> insertCity(City city);
+	
+	Result<City> updateCity(City city);
+	
+	Result<City> deleteCityByCityId(int cityId);
 }

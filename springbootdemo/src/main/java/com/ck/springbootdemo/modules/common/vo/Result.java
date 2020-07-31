@@ -24,6 +24,7 @@ public class Result<T> {
 		
 		public int status;
 		
+		//采用单例模式生成实例，为确保值的唯一性，构造方法私有
 		private ResultStatus(int status){
 			this.status = status;
 		}
