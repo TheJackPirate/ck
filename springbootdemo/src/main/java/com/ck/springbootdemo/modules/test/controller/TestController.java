@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,7 +32,10 @@ public class TestController {
 	private ApplicationTest applicationTest;
 	
 	@RequestMapping("/index")
-	public String testIndex(){
+	public String testIndex(ModelMap modelMap){
+		//将我们真正需要展示的页面路径包装到template属性中，由碎片组装器进行组装
+		modelMap.addAttribute("template","test/index");
+		//直接返回外层碎片组装器classpath:/templates/index.html
 		return "index";
 	}
 	
