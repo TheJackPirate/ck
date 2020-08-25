@@ -1,8 +1,9 @@
 package com.ck.springbootdemo.modules.test.controller;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ck.springbootdemo.modules.test.entity.City;
@@ -91,9 +93,14 @@ public class TestController {
 		return sb.toString();
 	}
 	
+	/**
+	 * 127.0.0.1/test/desc?key=fuck
+	 * @return
+	 */
 	@RequestMapping("/desc")
 	@ResponseBody
-	public String testDesc() {
-		return "This is test desc";
+	public String testDesc(HttpServletRequest request, @RequestParam String key) {
+		String key2 = request.getParameter("key");
+		return "This is test desc."+key+"----"+key2;
 	}
 }
