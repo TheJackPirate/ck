@@ -41,6 +41,9 @@ public class ParameterFilter implements Filter{
 				return super.getParameter(name);
 			}
 
+			/**
+			 * 获取HttpServletRequest对象并替换@RequestParam获取到的参数
+			 */
 			@Override
 			public String[] getParameterValues(String name) {
 				String[] values = httpRequest.getParameterValues(name);
