@@ -64,7 +64,7 @@ public class TestController {
 		modelMap.addAttribute("updateCityUri", "/api/city");
 		
 		//将我们真正需要展示的页面路径包装到template属性中，由碎片组装器进行组装
-		/* modelMap.addAttribute("template","test/index"); */
+		 modelMap.addAttribute("template","test/index"); 
 		//直接返回外层碎片组装器classpath:/templates/index.html
 		return "index";
 	}

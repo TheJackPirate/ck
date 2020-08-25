@@ -19,16 +19,15 @@ public class UrlInterceptor implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		LOGGER.info("------UrlInterceptor-----");
-	
-		String path = request.getServletPath();
-		String template = (String)modelAndView.getModelMap().get("template");
 		
 		//判断返回接口
-		if(modelAndView == null || path.startsWith("redirect")) {
+		if(modelAndView == null || modelAndView.getViewName().startsWith("redirect")) {
 			return;
 		}
 		
-		
+		String path = request.getServletPath();
+		String template = (String)modelAndView.getModelMap().get("template");
+	
 		//判断返回页面
 		if(StringUtils.isBlank(template)) {
 			if(path.startsWith("/")) {
