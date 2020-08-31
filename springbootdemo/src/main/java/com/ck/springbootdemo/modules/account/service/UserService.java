@@ -17,4 +17,6 @@ public interface UserService {
 	public Result<User> updateUser(User user);
 	
 	public Result<User> deleteUser(int userId);
+	
+	public User getUserByUserName(String userName);
 }

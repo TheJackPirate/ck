@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,11 +61,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public Result<User> login(User user) {
-		User userTemp = userDao.getUserByUserName(user.getUserName());
-		if(userTemp == null || !userTemp.getPassword().equals(MD5Util.getMD5((user.getPassword())))) {
-			return new Result<User>(ResultStatus.FAILED.status,"User name or password is error.");
-		}else {
-			
+//		User userTemp = userDao.getUserByUserName(user.getUserName());
+//		if(userTemp == null || !userTemp.getPassword().equals(MD5Util.getMD5((user.getPassword())))) {
+//			return new Result<User>(ResultStatus.FAILED.status,"User name or password is error.");
+//		}else {
+//			return new Result<User>(ResultStatus.SUCCESS.status,"");
+//		}
+		
+		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), MD5Util.getMD5(user.getPassword()));
+		usernamePasswordToken.setRememberMe(user.getRememberMe());
+		
+		try {
+			Subject subject = SecurityUtils.getSubject();
+			subject.login(usernamePasswordToken);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new Result<User>(ResultStatus.FAILED.status,"User name or password is error");
 		}
 		return new Result<User>(ResultStatus.SUCCESS.status,"");
 	}
@@ -105,6 +119,11 @@ public class UserServiceImpl implements UserService{
 	public Result<User> deleteUser(int userId) {
 		userDao.deleteUser(userId);
 		return new Result<User>(ResultStatus.SUCCESS.status,"");
+	}
+
+	@Override
+	public User getUserByUserName(String userName) {
+		return userDao.getUserByUserName(userName);
 	}
 
 }
