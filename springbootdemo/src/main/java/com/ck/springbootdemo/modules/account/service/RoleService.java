@@ -9,4 +9,5 @@ import com.ck.springbootdemo.modules.account.entity.Role;
 
 public interface RoleService {
 	List<Role> getRoles();
+	List<Role> getRoleByUserId(int userId);
 }

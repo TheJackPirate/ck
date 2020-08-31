@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			subject.login(usernamePasswordToken);
+			subject.checkRoles();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return new Result<User>(ResultStatus.FAILED.status,"User name or password is error");
