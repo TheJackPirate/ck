@@ -28,7 +28,15 @@ public class User {
 	// 表示该属性并非一个到数据库表的字段的映射
 	@Transient
 	private List<Role> roles;
+	@Transient
+	private boolean rememberMe;
 	
+	public boolean getRememberMe() {
+		return rememberMe;
+	}
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 	public List<Role> getRoles() {
 		return roles;
 	}
